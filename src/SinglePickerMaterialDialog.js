@@ -30,10 +30,15 @@ export default class SinglePickerMaterialDialog extends Component {
 
   onPressItem(value) {
     const { items } = this.props;
+    const selectedIndex = items.findIndex(item => item.value === value);
     this.setState(() => {
-      const selectedIndex = items.findIndex(item => item.value === value);
       return { selectedIndex };
     });
+    if (!this.props.okLabel) {
+      this.props.onOk({
+        selectedItem: this.props.items[selectedIndex],
+      })
+    }
   }
 
   keyExtractor = item => String(item.value);
@@ -41,7 +46,7 @@ export default class SinglePickerMaterialDialog extends Component {
   renderItem = ({ item, index }) => (
     <TouchableOpacity onPress={() => this.onPressItem(item.value)}>
       <View style={styles.rowContainer}>
-        <View style={styles.iconContainer}>
+        {this.props.icon ? <View style={styles.iconContainer}>
           <Icon
             name={
               index === this.state.selectedIndex
@@ -51,7 +56,7 @@ export default class SinglePickerMaterialDialog extends Component {
             color={this.props.colorAccent}
             size={24}
           />
-        </View>
+        </View> : null}
         <Text style={material.subheading}>{item.label}</Text>
       </View>
     </TouchableOpacity>
@@ -115,6 +120,7 @@ SinglePickerMaterialDialog.propTypes = {
   cancelLabel: PropTypes.string,
   okLabel: PropTypes.string,
   scrolled: PropTypes.bool,
+  icon: PropTypes.bool,
 };
 
 SinglePickerMaterialDialog.defaultProps = {
@@ -125,4 +131,5 @@ SinglePickerMaterialDialog.defaultProps = {
   cancelLabel: undefined,
   okLabel: undefined,
   scrolled: false,
+  icon: true,
 };
