@@ -14,7 +14,7 @@ import {
 import colors from './colors';
 import { material } from 'react-native-typography';
 
-const { height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 // TODO: Don't rely on Dimensions for the actions footer layout
 // TODO: Support custom actions
