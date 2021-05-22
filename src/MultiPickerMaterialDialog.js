@@ -88,6 +88,7 @@ export default class MultiPickerMaterialDialog extends Component {
 const styles = StyleSheet.create({
   rowContainer: {
     height: 56,
+    minHeight: 56,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',

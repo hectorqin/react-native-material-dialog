@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     marginHorizontal: 16,
     marginVertical: 106,
-    minWidth: 280,
+    minWidth: Platform.OS === 'web' ? (Math.min(width * 0.618, 450)) : 280,
     borderRadius: 2,
     elevation: 24,
     overflow: 'hidden',
